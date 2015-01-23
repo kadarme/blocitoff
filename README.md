@@ -1,5 +1,9 @@
 == README
 
+## Blocitoff: a Utility Application with Rake Automation
+
+Made with my mentor at [Bloc](http://bloc.io).
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

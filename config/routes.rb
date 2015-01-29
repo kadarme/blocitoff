@@ -1,8 +1,9 @@
-Rails.application.routes.draw do
+Blocitoff::Application.routes.draw do
+  resources :lists, except: [:index]
+  resources :todos, only: [:new, :create, :show]
+  
   devise_for :users
   get 'about' => 'welcome#about'
 
-  resources :todos, only: [:new, :create, :show]
-  
   root to: 'welcome#index'
 end

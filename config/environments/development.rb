@@ -39,6 +39,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   
+  # Better Errors on a Virtual Machine
+  BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+  
   # Raises informative errors if Action Mailer fails
   config.action_mailer.raise_delivery_errors = true
 end

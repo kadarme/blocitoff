@@ -1,13 +1,18 @@
 class ListsController < ApplicationController
-  before_action :authenticate_user! # users must be signed in before any lists_controller method 
+  before_action :authenticate_user!
+  # users must be signed in before any lists_controller method 
+  before_action :get_list, only: [:edit, :update, :destroy]
+  
+  def get_list
+    @list = List.find(params[:id])
+  end
   
   def index
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = current_user.list
     @items = @list.items
-    @item = @list.items.build
   end
 
   def new
@@ -28,11 +33,9 @@ class ListsController < ApplicationController
   end
   
   def edit
-    @list = List.find(params[:id])
   end
   
   def update
-    @list = List.find(params[:id])
     if @list.update_attributes(list_params)
       flash[:notice] = "List was updated."
       redirect_to @list
@@ -43,7 +46,6 @@ class ListsController < ApplicationController
   end
   
   def destroy
-    @list = List.find(params[:id])
   end
   
   private

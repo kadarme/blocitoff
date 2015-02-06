@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User do
+  it "should allow someone to sign up with their name, email, and password" do
+    @user = create(:user)
+  end
 end

@@ -1,15 +1,19 @@
+<h2><%= @list.title %></h2>
+<%= link_to "Edit Title", edit_list_path(@list), class: 'btn btn-success' %>
+
 <% if @list.nil? %>
   <%= link_to "New To-do List", new_list_path, class: 'btn btn-success' %>
 <% end %>
 
 </br>
 
-<div class="row">
-  <h2>Items</h2>
-  <div class='col-md-12'>
-    <%= render @items %>
-    <%= render 'items/form', list: @list, item: @item %>
-  </div>
+<div class="row">  
+   <div class='col-md-12'>
+     <%= render @items %> 
+     <%= render 'items/form', list: @list %>
+   </div>
 </div>
 
-                         
+
+
+

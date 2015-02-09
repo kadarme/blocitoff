@@ -7,9 +7,10 @@
 
 </br>
 
+
 <div class="row">  
    <div class='col-md-12'>
-     <%= render @items %> 
+     <%= render @items, list: @list %> 
      <%= render 'items/form', list: @list %>
    </div>
 </div>

@@ -8,15 +8,14 @@ class ItemsController < ApplicationController
     
     if @item.save
       flash[:notice] = "Item was saved."
-      redirect_to @list
     else
       flash[:error] = "There was an error saving the item. Please try again."
       render :new
     end
         
-#    respond_with do |format|
-#      format.html { redirect_to @list}
-#    end   
+    respond_with do |format|
+      format.html { redirect_to @list}
+    end   
 
   end
   

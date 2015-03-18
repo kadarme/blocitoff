@@ -1,8 +1,8 @@
-<div class="media" id="item-<%= item.id %>">
-  <div class='media-body'>
-    <%= item.name %>
-      <small>
-        <%= item.days_left %>
-        <%= link_to "", list_item_path(list, item), method: :delete, class: 'glyphicon glyphicon-ok' %>
-      </small>
-</div>
+<% unless item.name.nil? %>
+  <tr>
+    <td><%= item.name %></td>
+    <td><%= item.days_left %></td>
+    <td><%= link_to "", [item.list, item], method: :delete, class: 'glyphicon glyphicon-ok' %></td>
+  </tr>
+<% end %>
+

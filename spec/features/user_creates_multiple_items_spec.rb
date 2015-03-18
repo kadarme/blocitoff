@@ -16,7 +16,7 @@ feature 'User creates multiple items' do
     expect( page ).to have_content('Buy fountain pen')
   end
   
-  scenario 'Unsuccessfully saved due to undisclosed item' do
+  scenario 'Unsuccessfully due to an undisclosed item' do
     sign_in(@user)
     visit list_path(@list)
     click_button 'Create item'

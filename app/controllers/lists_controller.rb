@@ -1,17 +1,17 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
   # users must be signed in before any lists_controller method 
-  before_action :get_list, only: [:edit, :update, :destroy]
+  before_action :get_list, only: [:show, :edit, :update, :destroy]
   
   def get_list
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
   end
   
   def index
+    @lists = current_user.lists
   end
 
   def show
-    @list = current_user.list
     @items = @list.items
   end
 
@@ -20,8 +20,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
-    @list.user = current_user
+    @list = current_user.lists.new(list_params)
     
     if @list.save
       flash[:notice] = "List was saved."
@@ -46,6 +45,13 @@ class ListsController < ApplicationController
   end
   
   def destroy
+    if @list.destroy
+      flash[:notice] = "List was deleted."
+      redirect_to lists_path
+    else
+      flash[:error] = "There was an error deleting the list. Please try again."
+      render :show
+    end
   end
   
   private
@@ -53,4 +59,5 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:title)
   end
+  
 end

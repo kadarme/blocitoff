@@ -1,6 +1,6 @@
 Blocitoff::Application.routes.draw do
  
-  resources :lists, except: [:index] do
+  resources :lists do
     resources :items, only: [:create, :destroy]
   end
   

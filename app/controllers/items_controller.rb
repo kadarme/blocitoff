@@ -3,8 +3,8 @@ class ItemsController < ApplicationController
   
   def create
     @list = List.find(params[:list_id])
-    @item = @list.items.build( item_params )
-
+    @item = Item.build( item_params )
+    @item.list = @list
     
     if @item.save
       flash[:notice] = "Item was saved."
@@ -13,15 +13,17 @@ class ItemsController < ApplicationController
       render :new
     end
         
-    respond_with do |format|
-      format.html { redirect_to @list}
+    respond_with(@item) do |format|
+      format.html { redirect_to @list }
+      format.js
     end   
 
   end
   
   def destroy
     @list = List.find(params[:list_id])
-    @item = @list.items.find(params[:id])
+    @item = Item.find(params[:id])
+    name = @item.name
     
     if @item.destroy
       flash[:notice] = "Item was removed."
@@ -30,7 +32,8 @@ class ItemsController < ApplicationController
     end
     
     respond_with(@item) do |format|
-      format.html { redirect_to [@list]}
+      format.html { redirect_to @list }
+      format.js
     end
   end
   

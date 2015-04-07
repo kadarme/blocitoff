@@ -57,10 +57,7 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass'
-
 gem 'devise'
-
 gem 'faker'
-
 gem 'figaro', '1.0'
-
+gem 'whenever', :require => false

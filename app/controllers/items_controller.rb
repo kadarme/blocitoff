@@ -3,14 +3,13 @@ class ItemsController < ApplicationController
   
   def create
     @list = List.find(params[:list_id])
-    @item = Item.build( item_params )
+    @item = Item.new( item_params )
     @item.list = @list
     
     if @item.save
       flash[:notice] = "Item was saved."
     else
       flash[:error] = "There was an error saving the item. Please try again."
-      render :new
     end
         
     respond_with(@item) do |format|

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   
   def create
     @list = List.find(params[:list_id])
-    @item = Item.new( item_params )
+    @item = Item.new(item_params)
     @item.list = @list
     
     if @item.save
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     end
         
     respond_with(@item) do |format|
-      format.html { redirect_to @list }
+      format.html { redirect_to list_path(@list) }
       format.js
     end   
 
@@ -27,11 +27,11 @@ class ItemsController < ApplicationController
     if @item.destroy
       flash[:notice] = "Item was removed."
     else
-      flash[:error] = "Item couldn't be deleted. Please try again."
+      flash[:error] = "There was an error deleting the item. Please try again."
     end
     
     respond_with(@item) do |format|
-      format.html { redirect_to @list }
+      format.html { redirect_to list_path(@list) }
       format.js
     end
   end

@@ -34,7 +34,7 @@ class ListsController < ApplicationController
   def edit
   end
   
-  def update
+  def update   
     if @list.update_attributes(list_params)
       flash[:notice] = "List was updated."
       redirect_to @list
@@ -45,6 +45,8 @@ class ListsController < ApplicationController
   end
   
   def destroy
+    title = @list.title
+    
     if @list.destroy
       flash[:notice] = "List was deleted."
       redirect_to lists_path

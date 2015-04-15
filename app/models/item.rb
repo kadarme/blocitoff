@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   validates :name, length: { minimum: 1 }
   
   def days_left
-   7 - (DateTime.now.to_date - created_at.to_date).to_i
+    7 - (DateTime.now.to_date - created_at.to_date).to_i
   end
+  
 end
